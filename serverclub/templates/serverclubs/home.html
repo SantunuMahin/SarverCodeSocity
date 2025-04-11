@@ -1,0 +1,47 @@
+
+{% extends "serverclubs/layout.html" %}
+{% block body %}
+
+<head>
+    <link rel="stylesheet" href="static/serverclubs/home.css">
+</head>
+
+<body>
+
+    {% csrf_token %}
+    <div class="bg"></div> <!-- Background image -->
+
+    <div class="header">
+        <h1>Welcome to SurverCode Socity</h1>
+    </div>
+
+
+    <div class="nav">
+        <a href="{% url 'member' %}">Members</a>
+        <a href="{% url 'post' %}">Post</a>
+        <a href="{% url 'problems' %}">Problems</a>
+        <a href="{% url 'mentalsupport' %}">Mental Support</a>
+        <a href="{% url 'login_view' %}">Sign-Out</a>
+
+    </div>
+
+    <div class="main" id="home">
+        <h1>Explore the Future with Us</h1>
+        <p>Join us for mind-bending experiences, groundbreaking tech events, and futuristic explorations.</p>
+        <a href="{% url 'register' %}" class="join-btn">Join the Club</a>
+    </div>
+
+    <div class="footer">
+        <a style="color: aqua;text-decoration: none;margin-bottom:30px;" href="https://santunukaysar.pythonanywhere.com/">Connect with Founding Engineer</a>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <p>Loading...</p>
+    </div>
+
+    <canvas id="particle-canvas"></canvas>
+
+</body>
+<script src="static/serverclubs/home.js"></script>
+{% endblock %}

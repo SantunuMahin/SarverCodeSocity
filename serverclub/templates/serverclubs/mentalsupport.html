@@ -1,0 +1,83 @@
+{% extends 'serverclubs/layout.html' %}
+{% block body %}
+<head>
+    <link rel="stylesheet" href="static/serverclubs/mentalsupport.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Mental Support</h1>
+            <p>Your emotional well-being matters</p>
+        </header>
+
+        <section class="mood-tracker">
+            <h2>How are you feeling today?</h2>
+            <div class="mood-options">
+                <button onclick="showMessage('happy')" class="mood-button happy">😊 Happy</button>
+                <button onclick="showMessage('sad')" class="mood-button sad">😢 Sad</button>
+                <button onclick="showMessage('anxious')" class="mood-button anxious">😟 Anxious</button>
+                <button onclick="showMessage('stressed')" class="mood-button stressed">😖 Stressed</button>
+            </div>
+            <p id="mood-message"></p>
+        </section>
+
+        <section class="support">
+            <h2>Daily Motivation</h2>
+            <p id="motivational-quote">Click the button below to get a motivational quote!</p>
+            <button id="get-quote" onclick="getMotivation()" target = "blank">Get Motivation</button>
+        </section>
+
+        <footer class="footer">
+            <p>Remember, you're not alone. Reach out if you need help.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showMessage(mood) {
+    let message = '';
+    switch (mood) {
+        case 'happy':
+            message = 'Great to see you happy! Keep smiling!';
+            break;
+        case 'sad':
+            message = 'It’s okay to feel sad sometimes. Take your time to heal.';
+            break;
+        case 'anxious':
+            message = 'You’re strong. Breathe deeply, and let the worries fade.';
+            break;
+        case 'stressed':
+            message = 'Remember, stress is temporary. Take breaks and relax.';
+            break;
+        default:
+            message = 'How are you feeling today?';
+            break;
+    }
+    document.getElementById('mood-message').innerText = message;
+}
+
+function getMotivation() {
+    const quotes = [
+        "You are capable of amazing things.",
+        "Believe in yourself and all that you are.",
+        "Stay positive, work hard, and make it happen.",
+        "You are stronger than you think."
+    ];
+
+    // Randomly select a motivational quote
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('motivational-quote').innerText = randomQuote;
+
+    // Redirect to the Discord URL after 1 second (1000ms)
+    setTimeout(() => {
+        const url = "https://discord.gg/Pu6c62QbX5";  // Using a static URL for now
+          window.open(url, "_blank");   // Redirect to the URL
+    }, 1000);  // 1000 milliseconds delay
+}
+
+    </script>
+</body>
+
+
+{% endblock %}

@@ -1,0 +1,203 @@
+    body {
+        background-color: black;
+        /* Dark background for contrast */
+        color: #00ffcc;
+        /* Text color */
+        font-family: 'Roboto', sans-serif;
+        /* Font family */
+        margin: 0;
+        /* Remove default margin */
+        padding: 20px;
+        /* Add padding around the body */
+        scroll-behavior: smooth;
+        /* Smooth scrolling */
+    }
+
+    h1 {
+        text-align: center;
+        /* Center header */
+        font-size: 36px;
+        /* Increased font size */
+        color: #66ffcc;
+        /* Softer neon color */
+        text-shadow: 0 0 2px #00ffcc, 0 0 8px rgba(0, 204, 204, 0.3);
+        /* Reduced glow effect */
+        margin-bottom: 20px;
+        /* Space below header */
+        animation: fadeInUp 0.8s forwards;
+        /* Animation for header */
+    }
+
+    a.return-home {
+        display: block;
+        /* Block level to occupy full width */
+        text-align: center;
+        /* Center the link */
+        color: #66ffcc;
+        /* Link color */
+        font-size: 18px;
+        /* Font size */
+        margin: 20px 0;
+        /* Margin above and below the link */
+        text-decoration: none;
+        /* Remove underline */
+        transition: color 0.3s;
+        /* Smooth color transition */
+    }
+
+    a.return-home:hover {
+        color: #00ffcc;
+        /* Change color on hover */
+        text-shadow: 0 0 5px #00ffcc, 0 0 10px rgba(0, 255, 204, 0.5);
+        /* Glow effect on hover */
+    }
+
+    .download-button {
+        display: block;
+        /* Block level to occupy full width */
+        text-align: center;
+        /* Center the button */
+        background-color: #00ffcc;
+        /* Button background color */
+        color: black;
+        /* Text color */
+        padding: 10px 20px;
+        /* Padding for button */
+        border: none;
+        /* Remove default border */
+        border-radius: 5px;
+        /* Rounded corners */
+        font-size: 18px;
+        /* Font size */
+        margin: 20px auto;
+        /* Center margin */
+        cursor: pointer;
+        /* Pointer cursor on hover */
+        transition: background-color 0.3s;
+        /* Smooth background transition */
+    }
+
+    .download-button:hover {
+        background-color: #66ffcc;
+        /* Change background color on hover */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        /* Adds space above the table */
+        box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+        /* Glow effect around the table */
+        transition: transform 0.3s;
+        /* Smooth transition for scaling effect */
+    }
+
+    th,
+    td {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Light border for better visibility */
+        padding: 12px;
+        /* Increased padding for better readability */
+        text-align: left;
+        /* Default left alignment */
+        transition: background 0.3s ease;
+        /* Smooth background transition */
+    }
+
+    th {
+        background-color: rgba(255, 255, 255, 0.1);
+        /* Transparent background */
+        font-weight: bold;
+        /* Makes header text bold */
+    }
+
+    tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.05);
+        /* Alternate row color */
+    }
+
+    tr:hover {
+        background-color: rgba(0, 255, 204, 0.1);
+        /* Highlight row on hover */
+        transform: scale(1.02);
+        /* Slightly scale up on hover */
+    }
+
+    /* Center align the count column */
+    td:first-child {
+        text-align: center;
+        /* Center align for the first cell */
+    }
+
+    /* Animation for fade-in effect */
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+            /* Start from below */
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+            /* End at original position */
+        }
+    }
+
+    /* Loading overlay styles */
+    #loading-overlay {
+        position: fixed;
+        /* Fixed positioning */
+        top: 0;
+        /* Full height */
+        left: 0;
+        /* Full width */
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        background-color: rgba(0, 0, 0, 0.8);
+        /* Semi-transparent background */
+        display: none;
+        /* Hidden by default */
+        justify-content: center;
+        /* Center content horizontally */
+        align-items: center;
+        /* Center content vertically */
+        z-index: 9999;
+        /* Make sure it sits on top */
+    }
+
+    .spinner {
+        border: 8px solid rgba(255, 255, 255, 0.1);
+        /* Light spinner */
+        border-top: 8px solid #00ffcc;
+        /* Neon spinner */
+        border-radius: 50%;
+        /* Circular spinner */
+        width: 50px;
+        /* Spinner size */
+        height: 50px;
+        /* Spinner size */
+        animation: spin 1s linear infinite;
+        /* Spin animation */
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 600px) {
+        table {
+            font-size: 14px;
+            /* Adjust font size for mobile */
+        }
+    }

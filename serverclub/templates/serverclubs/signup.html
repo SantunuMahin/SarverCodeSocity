@@ -1,0 +1,50 @@
+{% extends "serverclubs/layout.html" %}
+{% block body %}
+
+<head>
+    <link rel="stylesheet" href="static/serverclubs/signup.css ">
+</head>
+
+<div class="container">
+    <h2>Create a New Account</h2>
+    <form id="signup-form" method="POST" action="{% url 'signup_view' %}" onsubmit="showLoading()">
+        {% csrf_token %}
+        <div class="form-group">
+            <label id="text" for="username">Username</label>
+            {{ signup_form.username }}
+        </div>
+        <div class="form-group">
+            <label id="email" for="email">Email</label>
+            {{ signup_form.email }}
+        </div>
+        <div class="form-group">
+            <label id="password1" for="password1">New Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            {{ signup_form.password1 }}
+        </div>
+        <div class="form-group">
+            <label for="password2">Confirm Password</label>
+            {{ signup_form.password2 }}
+        </div>
+        {% if signup_form.errors %}
+        <div class="error">
+            <ul>
+                {% for field in signup_form %}
+                {% for error in field.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <button type="submit" class="btn">Sign Up</button>
+    </form>
+    <p>Already have an account? <a style="color: aqua;" href="{% url 'login_view' %}">Login here</a></p>
+
+    <div id="loading" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+</div>
+<!-- <script src="static/serverclubs/signup.js"></script> -->
+
+{% endblock %}

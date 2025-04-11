@@ -1,0 +1,123 @@
+{% extends 'serverclubs/layout.html' %}
+
+{% block body %}
+
+<body>
+    <header>
+        <h1>Public Post</h1>
+        <button id="addPostBtn">Add Post</button>
+        <link rel="stylesheet" href="static/serverclubs/post.css">
+
+    </header>
+
+  <!-- Posts Display -->
+    <div id="content">
+        {% for post in posts %}
+        <div class="post-box">
+            <img src="{{ post.image.url }}" alt="{{ post.title }} Image">
+            <h3>Post Title: {{ post.title }}</h3>
+            <div class="post-content">
+                <p>{{ post.content }}</p>
+            </div>
+            <p>by <i>{{ post.author }}</i></p>
+            <p>Likes: <span class="like-count">{{ post.like }}</span></p>
+            <a href="{% url 'post_like' post.pk %}" class="like-button">Like</a>
+            <i class="fa-solid fa-heart"></i>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <div id="loadingSpinner" style="display:none;"></div>
+
+    <!-- Hidden form, initially not displayed -->
+   <div id="postModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" style="cursor:pointer;">&times;</span>
+        <h2>Add a New Post</h2>
+
+        <!-- Display success or error messages -->
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form id="addPostForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-primary">Add Post</button>
+        </form>
+    </div>
+</div>
+    <script>
+        // Get the modal, buttons, and content
+        var modal = document.getElementById('postModal');
+        var btn = document.getElementById('addPostBtn');
+        var span = document.getElementsByClassName('close')[0];
+        var content = document.getElementById('content');
+        var form = document.getElementById('addPostForm');
+        var spinner = document.getElementById('loadingSpinner');
+
+        // Open modal when clicking the "Add Post" button
+        btn.onclick = function () {
+            modal.style.display = 'block';
+            content.classList.add('blur');
+        };
+
+        // Close modal when clicking the close button
+        span.onclick = function () {
+            modal.style.display = 'none';
+            content.classList.remove('blur');
+        };
+
+        // Close modal if clicking outside of the modal content
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                content.classList.remove('blur');
+            }
+        };
+
+        // Show loading spinner on form submission
+        form.addEventListener('submit', function () {
+            spinner.style.display = 'block';
+        });
+
+        // Handle the like button clicks with AJAX
+        document.querySelectorAll('.like-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent page reload
+
+                const url = this.getAttribute('href');
+                const likeCounter = this.previousElementSibling.querySelector('.like-count');
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Update the like counter with the new value
+                    likeCounter.textContent = data.likes;
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+
+
+</body>
+
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Founding Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'serverclubs/protfolio.css' %}">
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'serverclubs/image/founder.jpg' %}" alt="Profile" class="profile-image">
+        <nav>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="about" class="scroll-reveal fade-in">
+            <h2>About Me</h2>
+            <p>Santunu Kaysar is a 22-year-old technical student majoring in computer science. As a passionate problem solver, he actively engages with platforms like LeetCode and Codeforces to hone his skills. Currently, he is deep into his studies in Data Structures and Algorithms (DSA), striving to master the foundations of computer science.
+            </p>
+            <p>Santunu is also the founding engineer at ServerCodeSocity, where he applies his technical expertise to build innovative solutions. Driven by a vision to create a better world through technology, he dreams of making meaningful contributions that enhance the beauty of life for all.</p>
+            <p>In addition to his technical pursuits, Santunu is highly conscious of environmental issues such as air pollution, global warming, and climate change. He believes that everyone has a responsibility to be aware and proactive in addressing these global challenges. His dream is to contribute to making a more beautiful world, where technology and environmental sustainability go hand in hand.</p>
+        </section>
+        <section id="projects" class="scroll-reveal fade-in">
+            <h2>My Projects</h2>
+            <div class="project-list">
+                <div class="project">
+                    <h3>Project 1</h3>
+                    <p>A web application for managing tasks effectively.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+                <div class="project">
+                    <h3>Project 2</h3>
+                    <p>An e-commerce platform for buying and selling products.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+        </section>
+        <section id="testimonials" class="scroll-reveal fade-in testimonials">
+            <h2>Testimonials</h2>
+            <div class="testimonial">
+                <p>"John is an exceptional engineer and a true team player. His leadership skills have greatly contributed to our project's success."</p>
+                <cite>- Client Name</cite>
+            </div>
+            <div class="testimonial">
+                <p>"Working with John was a great experience. He consistently delivers high-quality work and brings innovative ideas to the table."</p>
+                <cite>- Colleague Name</cite>
+            </div>
+        </section>
+        <section id="contact" class="scroll-reveal fade-in">
+            <h2>Contact Me</h2>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Santunu Kaysar. All Rights Reserved.</p>
+    </footer>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default anchor click behavior
+
+                const target = document.querySelector(this.getAttribute('href')); // Get the target section
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll smoothly to the section
+            });
+        });
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navList = document.querySelector('nav ul');
+
+        hamburger.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Fade-in effect for sections
+        const sections = document.querySelectorAll('.scroll-reveal');
+        const options = {
+            root: null,
+            threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Simple validation
+            if (name && email && message) {
+                alert(`Thank you, ${name}! Your message has been sent.`);
+                // Clear the form fields
+                document.getElementById('contact-form').reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+</body>
+
+</html>

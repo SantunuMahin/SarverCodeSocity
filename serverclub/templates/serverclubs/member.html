@@ -1,0 +1,47 @@
+{% extends "serverclubs/layout.html" %}
+{% block body %}
+
+<head>
+    <link rel="stylesheet" href="static/serverclubs/member.css">
+
+</head>
+
+<body>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <h1>Club Member List</h1>
+
+    <a href="{% url 'home' %}" class="return-home">Return to Home</a> <!-- Add this line for the return link -->
+
+    <a href="{% url 'download_pdf' %}" class="download-button">Download PDF</a>
+    <!-- Add this line for the download button -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+            <tr>
+                <td>{{ forloop.counter }}</td> <!-- Use forloop.counter for the count -->
+                <td>{{ member.first_name }} {{ member.last_name }}</td>
+                <td>{{ member.email }}</td>
+                <td>{{ member.phone }}</td>
+                <td>{{ member.city }}</td> <!-- Changed to correct city access -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+<script src="static/serverclubs/member.js'"></script>
+
+{%endblock%}

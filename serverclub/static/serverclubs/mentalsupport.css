@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1c1f26, #2a2f3d);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #e0e0e0;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    width: 80%;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #00FFFF;
+    text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+}
+
+.mood-tracker h2,
+.support h2 {
+    color: #FFFFFF;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    text-shadow: 0px 0px 5px #00FFFF;
+}
+
+.mood-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.mood-button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.4);
+    color: #fff;
+}
+
+.mood-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 255, 255, 0.8);
+}
+
+.happy { background-color: #00FF99; }
+.sad { background-color: #FF6347; }
+.anxious { background-color: #FFD700; }
+.stressed { background-color: #FF4500; }
+
+#motivational-quote {
+    font-style: italic;
+    margin-top: 20px;
+    color: #FFFFFF;
+    font-size: 1.1em;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+}
+
+#get-quote {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.4);
+}
+
+#get-quote:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.8);
+}
+
+.footer {
+    margin-top: 30px;
+    color: #bbbbbb;
+    font-size: 14px;
+}
+
+.footer p {
+    font-size: 0.9em;
+}

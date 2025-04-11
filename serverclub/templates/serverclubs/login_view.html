@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'serverclubs/login_view.css' %}">
+</head>
+
+
+<body>
+    <div class="container">
+        <h2>Login to Your Account</h2>
+        <form method="POST" action="{% url 'login_view' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="password">Password&nbsp;</label>
+                {{ form.password }}
+            </div>
+            {% if form.non_field_errors %}
+            <div class="error">
+                <ul>
+                    {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p>Don't have an account? <a style="color: #00ffcc;" href="{% url 'signup_view' %}">Sign up here</a></p>
+    </div>
+</body>
+
+</html>

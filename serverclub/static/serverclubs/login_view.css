@@ -1,0 +1,181 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1a1c24, #4b4e59);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Login Container Styles */
+.login-container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Header Styles */
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #00ffcc;
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+    font-size: 24px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input Field Styles */
+input[type="text"],
+input[type="password"] {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 255, 204, 0.5);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    /* backdrop-filter: blur(5px); */
+    /* Adding blur effect */
+}
+
+/* Focus Styles for Input Fields */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #00ffcc;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+    /* Glow effect */
+}
+
+/* Button Styles */
+button {
+    background-color: #00ffcc;
+    color: #333;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+    /* For ripple effect */
+}
+
+/* Button Hover Styles */
+button:hover {
+    background-color: #00e6b8;
+    transform: scale(1.05);
+}
+
+/* Button Active Styles */
+button:active {
+    background-color: #00ccb3;
+}
+
+/* Error Message Styles */
+.error {
+    color: #ff5555;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ripple Effect for Button */
+button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: width 0.2s ease, height 0.2s ease, top 0.2s ease, left 0.2s ease;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+#loader {
+    display: none;
+    /* Initially hidden */
+    position: fixed;
+    /* Fixed position to cover the entire viewport */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Dark overlay */
+    z-index: 1000;
+    /* On top of other elements */
+    justify-content: center;
+    /* Center the spinner */
+    align-items: center;
+}
+
+.spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    /* Light border */
+    border-top: 8px solid #00ffcc;
+    /* Neon accent color */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    /* Spin animation */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+button:active::after {
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    .login-container h2 {
+        font-size: 20px;
+    }
+}
